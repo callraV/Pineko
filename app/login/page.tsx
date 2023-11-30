@@ -33,6 +33,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(value) => {
+              console.log(value);
               fetch(`/api/login`, {
                 method: "POST",
                 headers: {

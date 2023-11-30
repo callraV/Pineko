@@ -56,14 +56,6 @@ export const News = (props: any) => {
         console.log(data);
       });
   };
-  // "sentiment_score_definition":
-  // x <= -0.35: Bearish
-  // -0.35 < x <= -0.15: Somewhat-Bearish
-  // -0.15 < x < 0.15: Neutral
-  // 0.15 <= x < 0.35: Somewhat_Bullish
-  // x >= 0.35: Bullish
-
-  // "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
 
   const getNews = () => {
     fetch(
@@ -108,32 +100,39 @@ export const News = (props: any) => {
       <div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col gap-3 mb-8">
-            <p className="text-md text-slate-600 mx-auto">
-              Recommended Position
-            </p>
+            <p className="text-md text-slate-600 mx-auto">Average Sentiment</p>
+
             {x <= -0.35 ? (
-              <div className="flex flex-col bg-red-200 text-red-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
-                <a className="mx-auto">Sell</a>
-                <span className="text-xs mx-auto">(low risk)</span>
+              <div className="flex flex-col gap-0.5 bg-red-200 text-red-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
+                <a className="mx-auto">Bearish</a>
+                <span className="text-xs mx-auto">
+                  Sell position recommended
+                </span>
               </div>
-            ) : -0.35 < x && x < 0 ? (
-              <div className="flex flex-col bg-orange-200 text-orange-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
-                <a className="mx-auto">Sell</a>
-                <span className="text-xs mx-auto">(medium risk)</span>
+            ) : -0.35 < x && x <= -0.15 ? (
+              <div className="flex flex-col gap-0.5 bg-orange-200 text-orange-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
+                <a className="mx-auto">Somewhat-Bearish</a>
+                <span className="text-xs mx-auto">
+                  Sell position recommended
+                </span>
               </div>
-            ) : x === 0 ? (
-              <div className="flex flex-col bg-gray-200 text-gray-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
-                <a className="mx-auto">None</a>
+            ) : -0.15 < x && x < 0.15 ? (
+              <div className="flex flex-col gap-0.5 bg-gray-200 text-gray-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
+                <a className="mx-auto">Neutral</a>
               </div>
-            ) : 0 < x && x < 0.35 ? (
-              <div className="flex flex-col bg-yellow-200 text-yellow-700 font-semibold rounded-full text-2xl mx-auto px-10 py-3">
-                <a className="mx-auto">Buy</a>
-                <span className="text-xs mx-auto">(medium risk)</span>
+            ) : 0.15 <= x && x < 0.35 ? (
+              <div className="flex flex-col gap-0.5 bg-yellow-200 text-yellow-700 font-semibold rounded-full text-2xl mx-auto px-10 py-3">
+                <a className="mx-auto">Somewhat bullish</a>
+                <span className="text-xs mx-auto">
+                  Buy position recommended
+                </span>
               </div>
             ) : x >= 0.35 ? (
-              <div className="flex flex-col bg-green-200 text-green-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
-                <a className="mx-auto">Buy</a>
-                <span className="text-xs mx-auto">(low risk)</span>
+              <div className="flex flex-col gap-0.5 bg-green-200 text-green-700 font-semibold rounded-full text-xl mx-auto px-8 py-3">
+                <a className="mx-auto">Bullish</a>
+                <span className="text-xs mx-auto">
+                  Buy position recommended
+                </span>
               </div>
             ) : (
               <></>

@@ -34,7 +34,7 @@ const Login = () => {
             validationSchema={LoginSchema}
             onSubmit={(value) => {
               console.log(value); // TESTING DEPLOYMENT
-              fetch(`http://127.0.0.1:5328/api/login`, {
+              fetch(`/api/login`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json", // Specify JSON content type

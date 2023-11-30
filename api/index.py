@@ -40,6 +40,10 @@ def teardown_appcontext(error):
     if db is not None:
         db.close()
 
+@app.route('/')
+def home():
+    return 'This is Pineko API'
+
 # get all users 
 @app.route("/api/users", methods =['GET'])
 def get_users():

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Chart from "../components/Chart";
 import {
   Button,
   Stack,
@@ -20,10 +19,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetChart, setChart } from "../redux/chart/chartSlice";
 import type { RootState } from "../redux/store";
 import useSound from "use-sound";
-import buySellSound from "../../public/sounds/buy_sell.mp3"; // Ensure the correct path
+import buySellSound from "../../public/sounds/buy_sell.mp3";
 import { Loading } from "../components/Loading";
 import { isMarketOpen } from "../utils/MarketHoursUtil";
 import { News } from "../components/News";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("../components/Chart"), { ssr: false }); // prevent SSR
 
 const Trade = () => {
   const dispatch = useDispatch();
@@ -266,11 +267,11 @@ const Trade = () => {
                     </div>
                   </div>
 
-                  {/* <Chart
+                  <Chart
                     pair={pair.replace(regex, "")}
                     interval={interval}
                     sellPrice={sellPrice(pair)}
-                  /> */}
+                  />
                 </>
               ) : (
                 <div className="mx-auto my-20">

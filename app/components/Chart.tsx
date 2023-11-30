@@ -154,9 +154,11 @@ const Chart = (props: any) => {
           height={350}
         />
       ) : (
-        <div className="flex justify-center py-28">
-          <Spinner />
-        </div>
+        <>
+          <div className="flex justify-center py-28">
+            <Spinner />
+          </div>
+        </>
       )}
     </div>
   );

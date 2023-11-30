@@ -1,24 +1,25 @@
 export const isMarketOpen = (pair: any) => {
-  // Get current date and time in New York timezone
   const nyDate = new Date().toLocaleString("en-US", {
     timeZone: "America/New_York",
   });
   const currentDateTime = new Date(nyDate);
 
-  // Check if today is Sunday (0) and current time is between 5:00 pm and 11:59:59 pm
-  if (currentDateTime.getDay() === 0 && currentDateTime.getHours() >= 17) {
-    return true;
-  }
+  const currentDay = currentDateTime.getDay();
+  const currentHour = currentDateTime.getHours();
 
-  // Check if today is Monday to Thursday (1-4) and current time is between 12:00 am and 5:00 pm
-  if (
-    pair === "XBT/USD" ||
-    (currentDateTime.getDay() >= 1 &&
-      currentDateTime.getDay() <= 4 &&
-      currentDateTime.getHours() < 17)
-  ) {
-    return true; // Market is opem
+  // Check if the current day is Friday (5) and the time is after 5pm
+  const isFridayAfter5pm = currentDay === 5 && currentHour >= 17;
+
+  // Check if the current day is Saturday (6) or Sunday (0)
+  const isWeekendDay = currentDay === 6 || currentDay === 0;
+
+  // Check if the current time is before 5pm on Sunday
+  const isBeforeSunday5pm =
+    currentDay !== 0 || (currentDay === 0 && currentHour < 17);
+
+  if (pair === "XBT/USD") {
+    return true;
   } else {
-    return false; // Market is closed
+    return !(isFridayAfter5pm || (isWeekendDay && isBeforeSunday5pm));
   }
 };

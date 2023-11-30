@@ -31,7 +31,7 @@ export const Quiz = (props: any) => {
   const { push } = useRouter();
 
   const handleSubmit = () => {
-    fetch(`/api/quiz/submit`, {
+    fetch(`https://pineko-api.vercel.app/api/quiz/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Specify JSON content type
@@ -51,7 +51,7 @@ export const Quiz = (props: any) => {
   };
 
   useEffect(() => {
-    fetch(`/api/quiz?course=${props.courseId}`)
+    fetch(`https://pineko-api.vercel.app/api/quiz?course=${props.courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setQuestion(data[2]);

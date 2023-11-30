@@ -35,13 +35,13 @@ const CourseCourses = () => {
   useEffect(() => {
     dispatch(resetCourse());
     dispatch(resetTakenCourses());
-    fetch(`/api/course?category=${categoryId}`)
+    fetch(`https://pineko-api.vercel.app/api/course?category=${categoryId}`)
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);
       });
 
-    fetch(`/api/course/taken?user=${user_id}`)
+    fetch(`https://pineko-api.vercel.app/api/course/taken?user=${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(setTakenCourses(data));

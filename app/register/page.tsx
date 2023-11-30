@@ -30,7 +30,7 @@ const Register = () => {
             initialValues={{ username: "", email: "", password: "" }}
             validationSchema={RegisterSchema}
             onSubmit={(value) => {
-              fetch(`/api/register`, {
+              fetch(`https://pineko-api.vercel.app/api/register`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json", // Specify JSON content type

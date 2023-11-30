@@ -44,10 +44,13 @@ export const EditProfile = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/profile/edit/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://pineko-api.vercel.app/api/profile/edit/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
     } catch (error) {
@@ -73,7 +76,7 @@ export const EditProfile = () => {
                 value["profile_pic_url"] = user.profile_pic_url;
               }
 
-              fetch(`/api/profile/edit`, {
+              fetch(`https://pineko-api.vercel.app/api/profile/edit`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json", // Specify JSON content type

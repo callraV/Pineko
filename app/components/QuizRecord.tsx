@@ -26,7 +26,7 @@ export const QuizRecord = (props: any) => {
   const user_id = useSelector((state: RootState) => state.user.user.user_id);
 
   useEffect(() => {
-    fetch(`/api/quiz?course=${props.courseId}`)
+    fetch(`https://pineko-api.vercel.app/api/quiz?course=${props.courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setQuestion(data[2]);
@@ -34,7 +34,9 @@ export const QuizRecord = (props: any) => {
         setCorrectAnswer(data[6]);
       });
 
-    fetch(`/api/course/taken/record?user=${user_id}&course=${props.courseId}`)
+    fetch(
+      `https://pineko-api.vercel.app/api/course/taken/record?user=${user_id}&course=${props.courseId}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setRecord(data);

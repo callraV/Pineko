@@ -33,8 +33,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(value) => {
-              console.log(value); // TESTING DEPLOYMENT
-              fetch(`/api/login`, {
+              fetch(`https://pineko-api.vercel.app/api/login`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json", // Specify JSON content type

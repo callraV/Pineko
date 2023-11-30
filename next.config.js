@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "https://pineko.vercel.app/api/:path*",
+        destination: "https://pineko-api.vercel.app/api/:path*",
       },
     ];
   },

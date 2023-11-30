@@ -33,6 +33,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(value) => {
+              console.log(value); // TESTING DEPLOYMENT
               fetch(`/api/login`, {
                 method: "POST",
                 headers: {
@@ -55,6 +56,7 @@ const Login = () => {
                       status: "error",
                       duration: 2000,
                     });
+                    console.log(data); // TESTING DEPLOYMENT
                   } else {
                     toast({
                       position: "top",

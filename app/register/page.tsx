@@ -30,7 +30,7 @@ const Register = () => {
             initialValues={{ username: "", email: "", password: "" }}
             validationSchema={RegisterSchema}
             onSubmit={(value) => {
-              fetch(`api/register`, {
+              fetch(`http://127.0.0.1:5328/api/register`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json", // Specify JSON content type

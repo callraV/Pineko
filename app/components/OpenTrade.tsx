@@ -122,7 +122,7 @@ export const OpenTrade = ({ tradeData }: any) => {
     <>
       {tradeData.length > 0 ? (
         tradeData.map((trade: any, index: number) => (
-          <Tbody>
+          <Tbody className="bg-white">
             <tr key={index}>
               <Td>
                 <Tooltip

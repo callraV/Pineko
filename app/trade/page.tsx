@@ -189,6 +189,16 @@ const Trade = () => {
                     sellPrice(pair)
                   )}
                 </h1>
+
+                {isMarketOpen(pair) ? (
+                  <div className="text-indigo-600 font-semibold">
+                    Market open
+                  </div>
+                ) : (
+                  <div className="text-orange-600 font-semibold">
+                    Market closed
+                  </div>
+                )}
               </div>
             </div>
 
@@ -206,11 +216,11 @@ const Trade = () => {
                 value={pair}
                 iconSize="sm"
               >
-                <option value="XBT/USD">XBTUSD</option>
-                <option value="EUR/USD">EURUSD</option>
-                <option value="USD/CAD">USDCAD</option>
-                <option value="GBP/USD">GBPUSD</option>
-                <option value="USD/CHF">USDCHF</option>
+                <option value="XBT/USD">Bitcoin/USD</option>
+                <option value="EUR/USD">EUR/USD</option>
+                <option value="USD/CAD">USD/CAD</option>
+                <option value="GBP/USD">GBP/USD</option>
+                <option value="USD/CHF">USD/CHF</option>
               </Select>
             </div>
           </div>
@@ -225,27 +235,27 @@ const Trade = () => {
 
         <TabPanels className="pt-2">
           <TabPanel>
-            <div className="flex flex-col mx-2 lg:mx-20">
+            <div className="flex flex-col mb-20 lg:mx-20">
               {isMarketOpen(pair) ? (
                 <>
-                  <div className="grid grid-rows-2 gap-1 md:grid-cols-3">
-                    <div>
+                  <div className="grid grid-rows-2 md:gap-1 md:grid-cols-3">
+                    <div className="mx-auto font-semibold text-slate-600 md:mx-0">
                       <RadioGroup
                         onChange={setInterval}
                         value={interval}
                         colorScheme="purple"
                       >
                         <Stack direction="row">
-                          <Radio value="1">1</Radio>
-                          <Radio value="5">5</Radio>
-                          <Radio value="15">15</Radio>
-                          <Radio value="30">30</Radio>
-                          <Radio value="60">60</Radio>
+                          <Radio value="1">1M</Radio>
+                          <Radio value="5">5M</Radio>
+                          <Radio value="15">15M</Radio>
+                          <Radio value="30">30M</Radio>
+                          <Radio value="60">60M</Radio>
                         </Stack>
                       </RadioGroup>
                     </div>
 
-                    <div className="col-span-2 grid grid-flow-col justify-stretch gap-2">
+                    <div className="invisible md:visible grid grid-flow-col justify-stretch gap-2 md:pl-20 md:col-span-2">
                       <Button
                         colorScheme="red"
                         size="sm"
@@ -272,6 +282,29 @@ const Trade = () => {
                     interval={interval}
                     sellPrice={sellPrice(pair)}
                   />
+
+                  <div className="visible md:invisible grid grid-flow-row justify-stretch gap-2">
+                    <Button
+                      colorScheme="red"
+                      size="sm"
+                      variant="outline"
+                      rounded="full"
+                      p="5"
+                      onClick={() => handleBuySell(0)}
+                    >
+                      Sell: {sellPrice(pair)}
+                    </Button>
+                    <Button
+                      colorScheme="green"
+                      size="sm"
+                      variant="outline"
+                      rounded="full"
+                      p="5"
+                      onClick={() => handleBuySell(1)}
+                    >
+                      Buy: {buyPrice(pair)}
+                    </Button>
+                  </div>
                 </>
               ) : (
                 <div className="mx-auto my-20">
@@ -282,7 +315,7 @@ const Trade = () => {
             </div>
           </TabPanel>
 
-          <TabPanel className="py-4">
+          <TabPanel>
             <News pair={pair} />
           </TabPanel>
         </TabPanels>

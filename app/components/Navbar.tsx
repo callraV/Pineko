@@ -91,13 +91,15 @@ export const Navbar = () => {
                         />
                         <div className="w-8/12">
                           <div className="flex">
-                            <Link
-                              href="/profile"
+                            <button
                               className="py-2.5 text-lg font-semibold hover:text-indigo-300"
-                              onClick={() => setMobileMenuOpen(false)}
+                              onClick={() => {
+                                push("/profile");
+                                setMobileMenuOpen(false);
+                              }}
                             >
                               {user.username}
-                            </Link>
+                            </button>
                             <Text className="text-sm text-slate-300 mt-4 mx-2">
                               lv {user.level}
                             </Text>

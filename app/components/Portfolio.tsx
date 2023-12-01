@@ -39,7 +39,7 @@ export const Portfolio = () => {
 
   return (
     <>
-      <div className="mx-auto pb-5 md:py-3 max-w-2xl rounded-3xl ring-1 ring-gray-200 mt-16 lg:flex lg:max-w-none">
+      <div className="shadow-md mx-auto pb-5 md:py-3 max-w-2xl rounded-lg ring-1 ring-gray-200 mt-16 lg:flex lg:max-w-none">
         <div className="w-full flex flex-col gap-4">
           <h3 className="mx-6 pt-4 text-xl font-bold lg:mx-8 md:pt-3">
             Portfolio

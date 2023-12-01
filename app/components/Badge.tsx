@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardBody, Image } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, Image, Spinner } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 
@@ -36,21 +36,31 @@ export const Badge = () => {
 
       <CardBody>
         <div className="grid grid-cols-3 items-center lg:mx-3 ">
-          {badges.map((badge: any) => (
-            <div
-              className={`grid grid-rows-4 text-slate-500 ${
-                earnedBadges.includes(badge[0]) ? "opacity-100" : "opacity-25"
-              }`}
-            >
-              <div className="row-span-2 flex items-center justify-center mb-3">
-                <Image boxSize="70px" objectFit="cover" src={badge[3]} />
-              </div>
-              <div className="text-md text-center font-semibold lg:text-xl">
-                {badge[1]}
-              </div>
-              <p className="text-xs text-center lg:text-sm">{badge[2]}</p>
+          {badges[0] === "" ? (
+            <div className="col-span-3 flex justify-center pt-16 pb-20">
+              <Spinner />
             </div>
-          ))}
+          ) : (
+            badges.map((badge: any) => (
+              <div
+                className={`grid grid-rows-4 text-slate-500 ${
+                  earnedBadges.includes(badge[0]) ? "opacity-100" : "opacity-25"
+                }`}
+              >
+                <div className="row-span-2 flex items-center justify-center mb-3">
+                  <Image
+                    boxSize={["60px", "70px", "70px"]}
+                    objectFit="cover"
+                    src={badge[3]}
+                  />
+                </div>
+                <div className="text-md text-center font-semibold lg:text-xl">
+                  {badge[1]}
+                </div>
+                <p className="text-xs text-center lg:text-sm">{badge[2]}</p>
+              </div>
+            ))
+          )}
         </div>
       </CardBody>
     </Card>

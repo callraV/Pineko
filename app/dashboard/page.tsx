@@ -70,7 +70,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="mx-5 pb-32 flex flex-col gap-5 lg:px-10 lg:mx-10">
+    <div className="px-5 pb-32 flex flex-col gap-5 lg:px-20">
       <Modal
         isOpen={isLevelUpOpen}
         onClose={onLevelUpClose}
@@ -80,13 +80,13 @@ const Dashboard = () => {
       </Modal>
 
       <div className="md:px-6 ">
-        <div className="mx-auto max-w-7xl sm:px-5 md:px-0 lg:px-0">
+        <div className="mx-auto max-w-7xl lg:px-5">
           <Portfolio />
         </div>
       </div>
 
       <div className="md:mx-5 lg:mx-10">
-        <Text className="mx-5 font-bold my-2">Open Trades</Text>
+        <Text className="text-xl font-bold mb-4 mx-5">Open Trades</Text>
 
         <TableContainer className="overflow-x-auto">
           <Table size={["sm", "md", "md"]}>
@@ -107,7 +107,9 @@ const Dashboard = () => {
       </div>
 
       <div className="md:mx-5 lg:mx-10">
-        <Text className="my-3 mx-5 font-bold text-purple-700">Courses</Text>
+        <Text className="text-xl mx-5 mb-4 font-bold text-purple-700">
+          Courses
+        </Text>
         <div className="flex flex-col gap-4 lg:gap-5">
           {categories.slice(0, 1).map((category: any, index: number) => (
             <CourseCategory

@@ -30,8 +30,8 @@ const Profile = () => {
   }
 
   return (
-    <div className="mx-5 flex flex-col gap-5 py-10 mb-16 lg:px-10 lg:mx-10">
-      <div className="mx-auto w-11/12">
+    <div className="mx-5 flex flex-col gap-10 py-10 mb-16 lg:px-10 lg:mx-10">
+      <div className="mx-auto w-11/12 border-b pt-2">
         <div className="flex gap-3">
           <Avatar size="lg" name={user.username} src={user.profile_pic_url} />
           <div className="flex flex-col gap-1.5">

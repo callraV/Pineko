@@ -36,7 +36,7 @@ export const DeleteProfile = () => {
             initialValues={{ password: "" }}
             validationSchema={DeleteProfileSchema}
             onSubmit={(value: any) => {
-              fetch(`/getapi/profile/delete`, {
+              fetch(`https://pineko-api.vercel.app/api/profile/delete`, {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",

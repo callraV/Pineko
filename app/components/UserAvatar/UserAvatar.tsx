@@ -10,7 +10,7 @@ export const UserAvatar = (props: any) => {
   const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/profile/image?user=${props.user}`)
+    fetch(`/api/profile/image?user=${props.user}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -21,13 +21,11 @@ export const UserAvatar = (props: any) => {
 
   return (
     <div>
-      {imageSrc && (
-        <Avatar
-          size={props.size}
-          src={`data:image/jpeg;base64,${imageSrc}`}
-          name={props.username}
-        />
-      )}
+      <Avatar
+        size={props.size}
+        src={`data:image/jpeg;base64,${imageSrc}`}
+        name={props.username}
+      />
     </div>
   );
 };

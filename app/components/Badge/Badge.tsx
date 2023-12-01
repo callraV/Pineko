@@ -12,13 +12,13 @@ export const Badge = () => {
   const [earnedBadges, setEarnedBadges] = useState([""]);
 
   useEffect(() => {
-    fetch(`/rewriteapi/badges`)
+    fetch(`https://pineko-api.vercel.app/api/badges`)
       .then((response) => response.json())
       .then((data) => {
         setBadges(data);
       });
 
-    fetch(`/rewriteapi/badges/earned?user=${user_id}`)
+    fetch(`https://pineko-api.vercel.app/api/badges/earned?user=${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         setEarnedBadges(data);

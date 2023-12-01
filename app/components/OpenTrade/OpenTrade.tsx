@@ -60,7 +60,7 @@ export const OpenTrade = ({ tradeData }: any) => {
   };
 
   const handleClose = (trade: any) => {
-    fetch(`/rewriteapi/trade/close`, {
+    fetch(`https://pineko-api.vercel.app/api/trade/close`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

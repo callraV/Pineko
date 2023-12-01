@@ -34,7 +34,7 @@ const Dashboard = () => {
   const [categories, setCategories] = useState([""]);
 
   useEffect(() => {
-    fetch(`/rewriteapi/trade?user=${user.user_id}`)
+    fetch(`https://pineko-api.vercel.app/api/trade?user=${user.user_id}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(setOpenTrades(data[0]));
@@ -44,7 +44,7 @@ const Dashboard = () => {
     dispatch(resetCategoryId());
     dispatch(resetDesc());
 
-    fetch(`/rewriteapi/category`)
+    fetch(`https://pineko-api.vercel.app/api/category`)
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (user.user_id != 0 && user.experience_points >= user.level * 100) {
-      fetch(`/rewriteapi/levelup?user=${user.user_id}`)
+      fetch(`https://pineko-api.vercel.app/api/levelup?user=${user.user_id}`)
         .then((response) => response.json())
         .then((data) => {
           dispatch(setUser(data));

@@ -46,10 +46,13 @@ export const EditProfile = () => {
     formData.append("user_id", String(user.user_id));
 
     try {
-      const response = await fetch("/rewriteapi/profile/edit/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://pineko-api.vercel.app/api/profile/edit/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
     } catch (error) {
@@ -69,7 +72,7 @@ export const EditProfile = () => {
             initialValues={{ username: "", password: "" }}
             validationSchema={EditProfileSchema}
             onSubmit={(value: any) => {
-              fetch(`/rewriteapi/profile/edit`, {
+              fetch(`https://pineko-api.vercel.app/api/profile/edit`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

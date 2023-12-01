@@ -140,7 +140,7 @@ const Trade = () => {
   }, [pair, interval]);
 
   const handleTrade = (trade: any) => {
-    fetch(`/rewriteapi/trade/open`, {
+    fetch(`https://pineko-api.vercel.app/api/trade/open`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

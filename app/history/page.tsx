@@ -14,7 +14,9 @@ const History = () => {
   const tradesPerPage = 30;
 
   useEffect(() => {
-    fetch(`/rewriteapi/trade/history?user=${user.user_id}`)
+    fetch(
+      `https://pineko-api.vercel.app/api/trade/history?user=${user.user_id}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setHistory(data);

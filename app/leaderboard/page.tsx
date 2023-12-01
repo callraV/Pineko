@@ -11,7 +11,7 @@ const Leaderboard = () => {
   const [ranking, setRanking] = useState([]);
 
   useEffect(() => {
-    fetch(`/rewriteapi/users`)
+    fetch(`https://pineko-api.vercel.app/api/users`)
       .then((response) => response.json())
       .then((data) => {
         setRanking(data);

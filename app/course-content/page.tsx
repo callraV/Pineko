@@ -29,7 +29,7 @@ const CourseContent = () => {
   });
 
   useEffect(() => {
-    fetch(`/rewriteapi/course/text?course=${course[0]}`)
+    fetch(`https://pineko-api.vercel.app/api/course/text?course=${course[0]}`)
       .then((response) => response.json())
       .then((data) => {
         setCourseText(data);

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
 export const UserAvatar = (props: any) => {
-  const [imageSrc, setImageSrc] = useState("profile/Default_Profile.jpg");
+  const [imageSrc, setImageSrc] = useState("");
   const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {

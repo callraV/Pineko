@@ -11,8 +11,8 @@ import {
   resetTakenCourses,
 } from "../redux/course/courseSlice";
 import { BsChevronCompactRight } from "react-icons/bs";
-import { Loading } from "../components/Loading";
-import { Course } from "../components/Course";
+import { Loading } from "../components/Loading/Loading";
+import { Course } from "../components/Course/Course";
 
 const CourseCourses = () => {
   const { push } = useRouter();
@@ -35,20 +35,19 @@ const CourseCourses = () => {
   useEffect(() => {
     dispatch(resetCourse());
     dispatch(resetTakenCourses());
-    fetch(`https://pineko-api.vercel.app/api/course?category=${categoryId}`)
+    fetch(`/api/course?category=${categoryId}`)
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);
       });
 
-    fetch(`https://pineko-api.vercel.app/api/course/taken?user=${user_id}`)
+    fetch(`/api/course/taken?user=${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(setTakenCourses(data));
       });
   }, []);
 
-  // Conditional rendering
   if (
     courses.length === 0 ||
     (courses.length > 0 && takenCourses.length === 0)
@@ -57,8 +56,8 @@ const CourseCourses = () => {
   }
 
   return (
-    <div className="mx-5 flex flex-col gap-1 py-10 lg:px-10 lg:mx-10">
-      <div className="flex items-center gap-5 mx-auto text-slate-400 z-50">
+    <div className="mx-5 flex flex-col gap-1 py-10 pb-28 lg:pb-24 lg:px-10 lg:mx-10">
+      <div className="flex items-center mx-auto text-slate-400 text-xs z-50 md:text-sm md:gap-3 lg:gap-5 ">
         <button
           onClick={() => push("course-categories")}
           className="hover:font-semibold"
@@ -103,7 +102,7 @@ const CourseCourses = () => {
         ) : (
           <>
             {courses.map((course: any, index: number) => (
-              <Course course={course} takenCourses={takenCourses} />
+              <Course key={index} course={course} takenCourses={takenCourses} />
             ))}
           </>
         )}

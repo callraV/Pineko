@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { CourseCategory } from "../components/CourseCategory";
+import { CourseCategory } from "../components/CourseCategory/CourseCategory";
 import {
   resetCategoryId,
   resetCategory,
   resetDesc,
 } from "../redux/course/courseSlice";
-import { Loading } from "../components/Loading";
+import { Loading } from "../components/Loading/Loading";
 
 const CourseCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -19,14 +19,13 @@ const CourseCategories = () => {
     dispatch(resetCategoryId());
     dispatch(resetDesc());
 
-    fetch(`https://pineko-api.vercel.app/api/category`)
+    fetch(`/api/category`)
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
       });
   }, []);
 
-  // Conditional rendering
   if (categories.length === 0) {
     return <Loading />;
   }
@@ -49,7 +48,7 @@ const CourseCategories = () => {
       <div className="flex flex-col gap-4 lg:gap-5">
         {categories.map((category: any, index: number) => (
           <CourseCategory
-            index={index}
+            key={index}
             categoryId={category[0]}
             name={category[1]}
             desc={category[2]}

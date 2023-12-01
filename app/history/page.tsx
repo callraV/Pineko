@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 import { Table, Thead, Tr, Th, Tbody, TableContainer } from "@chakra-ui/react";
-import { Loading } from "../components/Loading";
-import { ClosedTrade } from "../components/ClosedTrade";
+import { Loading } from "../components/Loading/Loading";
+import { ClosedTrade } from "../components/ClosedTrade/ClosedTrade";
 
 const History = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -14,9 +14,7 @@ const History = () => {
   const tradesPerPage = 30;
 
   useEffect(() => {
-    fetch(
-      `https://pineko-api.vercel.app/api/trade/history?user=${user.user_id}`
-    )
+    fetch(`/api/trade/history?user=${user.user_id}`)
       .then((response) => response.json())
       .then((data) => {
         setHistory(data);
@@ -30,13 +28,12 @@ const History = () => {
     setCurrentPage(pageNumber);
   };
 
-  // Conditional rendering
   if (history.length === 0) {
     return <Loading />;
   }
 
   return (
-    <div className="mx-10 flex flex-col gap-10 pt-10 pb-24">
+    <div className="mx-5 flex flex-col gap-10 pt-10 pb-24">
       <h2 className="font-bold text-3xl mx-auto">Trading History</h2>
 
       <div className="lg:mx-10">
@@ -66,7 +63,8 @@ const History = () => {
           </Table>
         </TableContainer>
 
-        <div className="py-3 flex justify-center">
+        <div className="pt-5 flex gap-2 justify-center items-center">
+          <a className="font-semibold">Page</a>
           {history[0] === "No data to show" ? (
             <div className="my-5">You have not closed any trades yet</div>
           ) : (
@@ -76,7 +74,7 @@ const History = () => {
               <button
                 key={number + 1}
                 onClick={() => paginate(number + 1)}
-                className="px-3 py-1 mx-1 rounded-sm bg-slate-200 hover:bg-slate-300"
+                className="px-3 py-1 mx-1 rounded-md bg-slate-200 hover:bg-slate-300"
               >
                 {number + 1}
               </button>

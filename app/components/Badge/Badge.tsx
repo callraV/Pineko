@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Image, Spinner } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 
 export const Badge = () => {
   const user_id = useSelector((state: RootState) => state.user.user.user_id);
@@ -12,16 +12,16 @@ export const Badge = () => {
   const [earnedBadges, setEarnedBadges] = useState([""]);
 
   useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/badges`)
+    fetch(`/api/badges`)
       .then((response) => response.json())
       .then((data) => {
-        setBadges(data); // Store the fetched badges in the state
+        setBadges(data);
       });
 
-    fetch(`https://pineko-api.vercel.app/api/badges/earned?user=${user_id}`)
+    fetch(`/api/badges/earned?user=${user_id}`)
       .then((response) => response.json())
       .then((data) => {
-        setEarnedBadges(data); // Store the fetched badges in the state
+        setEarnedBadges(data);
       });
   }, []);
 

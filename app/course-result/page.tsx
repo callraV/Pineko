@@ -8,8 +8,8 @@ import { BsChevronCompactRight } from "react-icons/bs";
 import { useRouter, useSearchParams } from "next/navigation";
 import Confetti from "react-confetti";
 import useSound from "use-sound";
-import winSound from "../../public/sounds/dumdaradum.mp3"; // Ensure the correct path
-import loseSound from "../../public/sounds/fail.mp3"; // Ensure the correct path
+import winSound from "../../public/sounds/dumdaradum.mp3";
+import loseSound from "../../public/sounds/fail.mp3";
 
 const CourseResult = () => {
   const courseCategory = useSelector(
@@ -32,7 +32,7 @@ const CourseResult = () => {
 
   return (
     <div className="mx-5 flex flex-col gap-1 py-10 lg:px-10 lg:mx-10">
-      <div className="flex items-center gap-5 mx-auto text-slate-400 z-50">
+      <div className="flex items-center mx-auto text-slate-400 text-xs z-50 md:text-sm md:gap-3 lg:gap-5 ">
         <button
           onClick={() => push("course-categories")}
           className="hover:font-semibold"
@@ -59,31 +59,39 @@ const CourseResult = () => {
       <div className="flex flex-col gap-5">
         {correct === "true" ? (
           <>
-            <Confetti />
+            <Confetti width={screen.width} height={screen.height} />
 
-            <Image src="asset/WinNeko.jpg" width="300px" mx="auto" />
+            <Image
+              src="asset/SuccesfulQuiz.png"
+              width={["180px", "250px", "250px"]}
+              mx="auto"
+            />
 
             <div className="flex flex-col gap-5 justify-center">
               <h2 className="text-5xl self-center font-bold text-yellow-500">
-                Congratulations!
+                Correct!
               </h2>
 
               <p className="text-slate-600 w-8/12 text-center mx-auto">
-                You are correct! You gained 10 points!
+                Congratulations! You gained 10 points!
               </p>
             </div>
           </>
         ) : (
           <>
-            <Image src="asset/LostNeko.jpg" width="300px" mx="auto" />
+            <Image
+              src="asset/UnsuccesfulQuiz.png"
+              width={["180px", "250px", "250px"]}
+              mx="auto"
+            />
 
             <div className="flex flex-col gap-5 justify-center">
               <h2 className="text-5xl self-center font-bold text-gray-500">
-                Uh oh...
+                Wrong!
               </h2>
 
               <p className="text-slate-600 w-8/12 text-center mx-auto">
-                Wrong answer. Let's revise more!
+                Opps... Let's revise more!
               </p>
             </div>
           </>
@@ -92,7 +100,7 @@ const CourseResult = () => {
         <div className="flex flex-col mt-3 gap-3 lg:gap-2">
           <button
             onClick={() => push("/course-categories")}
-            className="flex w-5/12 mx-auto justify-center rounded-lg bg-indigo-600 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="flex w-9/12 md:w-3/12 mx-auto justify-center rounded-lg bg-indigo-600 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Continue courses
           </button>

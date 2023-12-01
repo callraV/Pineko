@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { Card, CardBody } from "@chakra-ui/react";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { Balance } from "./Balance";
+import { Balance } from "../Balance/Balance";
 import { useRouter } from "next/navigation";
 
 export const Portfolio = () => {
@@ -27,9 +27,7 @@ export const Portfolio = () => {
   };
 
   useEffect(() => {
-    fetch(
-      `https://pineko-api.vercel.app/api/trade/history?user=${user.user_id}`
-    )
+    fetch(`/api/trade/history?user=${user.user_id}`)
       .then((response) => response.json())
       .then((data) => {
         setHistory(data);

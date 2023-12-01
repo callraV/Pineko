@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import ReactApexChart from "react-apexcharts";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 import { Spinner } from "@chakra-ui/react";
 import _debounce from "lodash/debounce";
 
@@ -42,44 +42,46 @@ const Chart = (props: any) => {
       .then((response) => response.json())
       .then((d) => {
         var result = d.result;
-        var history = result[Object.keys(result)[0]].slice(-100);
+        if (result != null) {
+          var history = result[Object.keys(result)[0]].slice(-100);
 
-        var arr: { x: Date; y: any[] }[] = [];
+          var arr: { x: Date; y: any[] }[] = [];
 
-        history.forEach((h: any) => {
-          const time = h[0];
-          const open = h[1];
-          const high = h[2];
-          const low = h[3];
-          const close = h[4];
+          history.forEach((h: any) => {
+            const time = h[0];
+            const open = h[1];
+            const high = h[2];
+            const low = h[3];
+            const close = h[4];
 
-          const historyData = {
-            x: new Date(time * 1000),
-            y: [open, high, low, close],
-          };
+            const historyData = {
+              x: new Date(time * 1000),
+              y: [open, high, low, close],
+            };
 
-          arr.push(historyData);
-        });
+            arr.push(historyData);
+          });
 
-        arr.push(newData);
+          arr.push(newData);
 
-        if (arr.length > 100) {
-          arr.shift();
-        }
+          if (arr.length > 100) {
+            arr.shift();
+          }
 
-        setSeries([
-          {
-            name: "candle",
-            data: arr,
-          },
-        ]);
+          setSeries([
+            {
+              name: "candle",
+              data: arr,
+            },
+          ]);
 
-        if (arr.length > 0) {
-          const maxY = Math.max(...arr.map((data) => Math.max(...data.y)));
-          setMaxYValue(maxY);
+          if (arr.length > 0) {
+            const maxY = Math.max(...arr.map((data) => Math.max(...data.y)));
+            setMaxYValue(maxY);
+          }
         }
       });
-  }, 500); // adjust the debounce delay as needed
+  }, 500);
 
   useEffect(() => {
     debouncedFetchData();
@@ -90,7 +92,7 @@ const Chart = (props: any) => {
       chart: {
         animations: {
           enabled: true,
-          easing: "easeinout" as "easeinout", // type assertion
+          easing: "easeinout" as "easeinout",
           speed: 800,
           animateGradually: {
             enabled: true,
@@ -102,7 +104,7 @@ const Chart = (props: any) => {
           },
         },
         height: 350,
-        type: "candlestick" as "candlestick", // type assertion
+        type: "candlestick" as "candlestick",
       },
       annotations: {
         yaxis: [
@@ -127,7 +129,7 @@ const Chart = (props: any) => {
         enabled: true,
       },
       xaxis: {
-        type: "category" as "category", // type assertion
+        type: "category" as "category",
         labels: {
           formatter: function (val: any) {
             return dayjs(val).format("MMM DD HH:mm");

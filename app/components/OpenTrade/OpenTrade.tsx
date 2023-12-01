@@ -11,16 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { useToast } from "@chakra-ui/react";
-
-import { setOpenTrades } from "../redux/open/openSlice";
-import { setUser } from "../redux/user/userSlice";
-
+import { setOpenTrades } from "../../redux/open/openSlice";
+import { setUser } from "../../redux/user/userSlice";
 import useSound from "use-sound";
-import winSound from "../../public/sounds/cha_ching.mp3";
-import loseSound from "../../public/sounds/negative_beeps.mp3";
-
+import winSound from "../../../public/sounds/cha_ching.mp3";
+import loseSound from "../../../public/sounds/negative_beeps.mp3";
 import { useSelector } from "react-redux";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 
 export const OpenTrade = ({ tradeData }: any) => {
   const toast = useToast();
@@ -63,10 +60,10 @@ export const OpenTrade = ({ tradeData }: any) => {
   };
 
   const handleClose = (trade: any) => {
-    fetch(`https://pineko-api.vercel.app/api/trade/close`, {
+    fetch(`/api/trade/close`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Specify JSON content type
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         user_id: trade[1],

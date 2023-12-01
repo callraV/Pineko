@@ -3,10 +3,9 @@
 import React, { useEffect } from "react";
 import Confetti from "react-confetti";
 import useSound from "use-sound";
-import levelUpSound from "../../public/sounds/dumdaradum.mp3"; // Ensure the correct path
+import levelUpSound from "../../../public/sounds/dumdaradum.mp3";
 import { useRouter } from "next/navigation";
 import {
-  Text,
   Image,
   ModalOverlay,
   ModalContent,
@@ -33,12 +32,7 @@ export const LevelUp = () => {
 
         <ModalBody>
           <div className="flex flex-col gap-5 text-5xl font-bold mt-10">
-            <Image
-              src="https://i.pinimg.com/564x/02/ee/2a/02ee2aab9b1753a4b6db68b15d943c34.jpg"
-              borderRadius="lg"
-              className="mx-5"
-            />
-            <Text className="self-center">LEVEL UP!</Text>
+            <Image src="asset/LevelUp.png" borderRadius="lg" className="mx-5" />
           </div>
         </ModalBody>
 

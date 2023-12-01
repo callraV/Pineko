@@ -2,15 +2,15 @@
 
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
-import { useToast, Avatar, Progress, Text } from "@chakra-ui/react";
+import { useToast, Progress, Text } from "@chakra-ui/react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { resetUser } from "../redux/user/userSlice";
-import { resetChart } from "../redux/chart/chartSlice";
-import { resetPrice } from "../redux/price/priceSlice";
+import { resetUser } from "../../redux/user/userSlice";
+import { resetChart } from "../../redux/chart/chartSlice";
+import { resetPrice } from "../../redux/price/priceSlice";
+import { UserAvatar } from "../UserAvatar/UserAvatar";
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,7 +20,6 @@ export const Navbar = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const pathname = usePathname();
 
-  // Conditional rendering
   if (pathname !== "/" && pathname !== "/login" && pathname !== "/register") {
     if (user === null) {
       return <></>;
@@ -33,12 +32,12 @@ export const Navbar = () => {
         <div>
           <button
             type="button"
-            className={`m-5 inline-flex items-center justify-center rounded-md text-gray-700 lg:my-5 lg:mx-0 ${
+            className={`m-3 inline-flex items-center justify-center rounded-md text-gray-700 md:m-5 lg:mx-0 ${
               mobileMenuOpen === false ? "" : "hidden"
             }`}
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon className="h-5 w-5 md:h-6 md:h-6" aria-hidden="true" />
           </button>
         </div>
       </nav>
@@ -66,7 +65,7 @@ export const Navbar = () => {
                 <a className="mt-2 flex gap-2">
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="asset/PinekoLogoR.png"
                     alt=""
                   />
                   <span className="text-2xl font-semibold">Pineko</span>
@@ -80,14 +79,15 @@ export const Navbar = () => {
                 </button>
               </div>
 
-              <div className="mt-8 flow-root">
+              <div className="mt-5 flow-root">
                 <div className="flex flex-col gap-5 text-md">
                   {user.user_id ? (
                     <>
                       <div className="flex items-center gap-x-3 px-6 py-3">
-                        <Avatar
-                          name={user.username}
-                          src={user.profile_pic_url}
+                        <UserAvatar
+                          size="md"
+                          user={user.user_id}
+                          username={user.username}
                         />
                         <div className="w-8/12">
                           <div className="flex">
@@ -119,7 +119,7 @@ export const Navbar = () => {
                       <hr />
 
                       <a
-                        className="px-6 text-rose-600 hover:text-rose-400"
+                        className="px-6 text-red-600 font-semibold hover:text-rose-400"
                         onClick={() => {
                           toast({
                             position: "top",
@@ -154,7 +154,7 @@ export const Navbar = () => {
                         </a>
                       </div>
                       <hr />
-                      <div className="px-6">
+                      <div className="px-6 font-semibold hover:text-indigo-200">
                         <a href="/"> Home</a>
                       </div>
                     </>

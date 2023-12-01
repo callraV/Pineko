@@ -14,18 +14,19 @@ import {
   useDisclosure,
   Modal,
 } from "@chakra-ui/react";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { setUser } from "../redux/user/userSlice";
-import { EditProfileSchema } from "../utils/SchemasUtil";
-import { DeleteProfile } from "./DeleteProfile";
+import { setUser } from "../../redux/user/userSlice";
+import { EditProfileSchema } from "../../utils/SchemasUtil";
+import { DeleteProfile } from "../DeleteProfile/DeleteProfile";
+import { UserAvatar } from "../UserAvatar/UserAvatar";
 
 export const EditProfile = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const user = useSelector((state: RootState) => state.user.user);
-  const [file, setFile] = useState<File | string>(user.profile_pic_url);
+  const [file, setFile] = useState<File | string>("");
   const [isChecked, setIsChecked] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -42,15 +43,13 @@ export const EditProfile = () => {
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("user_id", String(user.user_id));
 
     try {
-      const response = await fetch(
-        "https://pineko-api.vercel.app/api/profile/edit/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/profile/edit/upload", {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
     } catch (error) {
@@ -70,22 +69,15 @@ export const EditProfile = () => {
             initialValues={{ username: "", password: "" }}
             validationSchema={EditProfileSchema}
             onSubmit={(value: any) => {
-              if (file instanceof File) {
-                value["profile_pic_url"] = "profile/" + file.name;
-              } else {
-                value["profile_pic_url"] = user.profile_pic_url;
-              }
-
-              fetch(`https://pineko-api.vercel.app/api/profile/edit`, {
+              fetch(`/api/profile/edit`, {
                 method: "POST",
                 headers: {
-                  "Content-Type": "application/json", // Specify JSON content type
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                   user_id: user.user_id,
                   username: value.username,
                   password: value.password,
-                  profile_pic_url: value.profile_pic_url,
                 }),
               })
                 .then((response) => response.json())
@@ -183,18 +175,18 @@ export const EditProfile = () => {
                           htmlFor="cover-photo"
                           className="block text-sm font-medium leading-6 text-gray-900"
                         >
-                          Profile picture
+                          New profile picture
                         </label>
                         <div className="flex flex-col gap-2 p-5">
                           <div className="px-20 relative">
                             <Image
-                              src={user.profile_pic_url}
                               id="imagePrev"
                               w="260px"
                               h="135px"
                               objectFit="cover"
                               className="rounded-full border border-solid border-gray-300"
                             />
+
                             <input
                               type="file"
                               id="file"
@@ -205,8 +197,8 @@ export const EditProfile = () => {
                               }}
                             />
                           </div>
-                          <Text className="self-center text-slate-400">
-                            Click to Edit
+                          <Text className="flex flex-col mx-auto text-slate-400 text-sm">
+                            JPEG/JPG/PNG max. 500kb
                           </Text>
                         </div>
                       </div>

@@ -12,8 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { TbLetterA, TbLetterB, TbLetterC } from "react-icons/tb";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { Loading } from "./Loading";
+import { RootState } from "../../redux/store";
+import { Loading } from "../Loading/Loading";
 
 export const QuizRecord = (props: any) => {
   const [question, setQuestion] = useState("");
@@ -26,7 +26,7 @@ export const QuizRecord = (props: any) => {
   const user_id = useSelector((state: RootState) => state.user.user.user_id);
 
   useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/quiz?course=${props.courseId}`)
+    fetch(`/api/quiz?course=${props.courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setQuestion(data[2]);
@@ -34,9 +34,7 @@ export const QuizRecord = (props: any) => {
         setCorrectAnswer(data[6]);
       });
 
-    fetch(
-      `https://pineko-api.vercel.app/api/course/taken/record?user=${user_id}&course=${props.courseId}`
-    )
+    fetch(`/api/course/taken/record?user=${user_id}&course=${props.courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setRecord(data);

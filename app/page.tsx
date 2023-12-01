@@ -22,7 +22,7 @@ const LandingPage = () => {
           <div className="hidden sm:flex sm:justify-center"></div>
           <div className="text-center">
             <Image
-              src="asset/PinekoLogoTrans.png"
+              src="asset/PinekoLogo.png"
               width={["150px", "180px", "180px"]}
               mx="auto"
             />

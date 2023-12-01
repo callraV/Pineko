@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardBody, Box, Heading } from "@chakra-ui/react";
 import { BsCheckCircleFill, BsCircle } from "react-icons/bs";
-import { setCourse } from "../redux/course/courseSlice";
+import { setCourse } from "../../redux/course/courseSlice";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 

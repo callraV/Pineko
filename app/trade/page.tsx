@@ -20,11 +20,13 @@ import { resetChart, setChart } from "../redux/chart/chartSlice";
 import type { RootState } from "../redux/store";
 import useSound from "use-sound";
 import buySellSound from "../../public/sounds/buy_sell.mp3";
-import { Loading } from "../components/Loading";
+import { Loading } from "../components/Loading/Loading";
 import { isMarketOpen } from "../utils/MarketHoursUtil";
-import { News } from "../components/News";
+import { News } from "../components/News/News";
 import dynamic from "next/dynamic";
-const Chart = dynamic(() => import("../components/Chart"), { ssr: false }); // prevent SSR
+const Chart = dynamic(() => import("../components/Chart/Chart"), {
+  ssr: false,
+}); // prevent SSR
 
 const Trade = () => {
   const dispatch = useDispatch();
@@ -127,7 +129,7 @@ const Trade = () => {
       const parsedData = JSON.parse(event.data);
 
       if (parsedData[1]) {
-        dispatch(setChart(parsedData)); // update redux state
+        dispatch(setChart(parsedData));
       }
     }
 
@@ -138,10 +140,10 @@ const Trade = () => {
   }, [pair, interval]);
 
   const handleTrade = (trade: any) => {
-    fetch(`https://pineko-api.vercel.app/api/trade/open`, {
+    fetch(`/api/trade/open`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Specify JSON content type
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(trade),
     })
@@ -172,7 +174,7 @@ const Trade = () => {
   };
 
   if (chartData.pair === null) {
-    return <Loading />; // Conditional rendering
+    return <Loading />;
   }
 
   return (

@@ -6,9 +6,9 @@ import type { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import { Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { BsChevronCompactRight } from "react-icons/bs";
-import { Quiz } from "../components/Quiz";
-import { QuizRecord } from "../components/QuizRecord";
-import { Loading } from "../components/Loading";
+import { Quiz } from "../components/Quiz/Quiz";
+import { QuizRecord } from "../components/QuizRecord/QuizRecord";
+import { Loading } from "../components/Loading/Loading";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 const CourseContent = () => {
@@ -29,21 +29,20 @@ const CourseContent = () => {
   });
 
   useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/course/text?course=${course[0]}`)
+    fetch(`/api/course/text?course=${course[0]}`)
       .then((response) => response.json())
       .then((data) => {
         setCourseText(data);
       });
   }, []);
 
-  // Conditional rendering
   if (courseText === "") {
     return <Loading />;
   }
 
   return (
     <div className="mx-5 flex flex-col gap-1 py-10 lg:px-10 lg:mx-10">
-      <div className="flex items-center gap-5 mx-auto text-slate-400 z-50">
+      <div className="flex items-center mx-auto text-slate-400 text-xs z-50 md:text-sm md:gap-3 lg:gap-5 ">
         <button
           onClick={() => push("course-categories")}
           className="hover:font-semibold"
@@ -76,21 +75,21 @@ const CourseContent = () => {
 
       <div
         dangerouslySetInnerHTML={{ __html: courseText }}
-        className="px-3 lg:px-20 text-lg whitespace-pre-wrap"
+        className="px-3 text-lg whitespace-pre-wrap lg:px-20"
       />
 
-      <div className="pt-7 pb-10 flex flex-col">
+      <div className="pt-5 pb-16 flex flex-col">
         {tc_id.includes(course_id) ? (
           <button
             onClick={onOpen}
-            className="flex w-5/12 mx-auto justify-center rounded-lg bg-yellow-400 py-2.5 text-md font-semibold text-yellow-700 shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="flex w-11/12 md:w-5/12 mx-auto justify-center rounded-lg bg-yellow-400 py-2.5 text-md font-semibold text-yellow-700 shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Completed
           </button>
         ) : (
           <button
             onClick={onOpen}
-            className="flex w-5/12 mx-auto justify-center rounded-lg bg-indigo-600 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="flex w-11/12 md:w-5/12 mx-auto justify-center rounded-lg bg-indigo-600 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Mark as completed
           </button>

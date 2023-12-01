@@ -9,12 +9,12 @@ import {
   ModalBody,
   Checkbox,
 } from "@chakra-ui/react";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { resetUser } from "../redux/user/userSlice";
-import { DeleteProfileSchema } from "../utils/SchemasUtil";
+import { resetUser } from "../../redux/user/userSlice";
+import { DeleteProfileSchema } from "../../utils/SchemasUtil";
 
 export const DeleteProfile = () => {
   const { push } = useRouter();
@@ -36,10 +36,10 @@ export const DeleteProfile = () => {
             initialValues={{ password: "" }}
             validationSchema={DeleteProfileSchema}
             onSubmit={(value: any) => {
-              fetch(`https://pineko-api.vercel.app/api/profile/delete`, {
+              fetch(`/api/profile/delete`, {
                 method: "DELETE",
                 headers: {
-                  "Content-Type": "application/json", // Specify JSON content type
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                   user_id: user.user_id,

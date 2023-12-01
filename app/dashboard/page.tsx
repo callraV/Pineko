@@ -8,16 +8,16 @@ import { Modal, useDisclosure, Text } from "@chakra-ui/react";
 import { Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
 import { setOpenTrades } from "../redux/open/openSlice";
 import { setUser } from "../redux/user/userSlice";
-import { Loading } from "../components/Loading";
-import { OpenTrade } from "../components/OpenTrade";
-import { LevelUp } from "../components/LevelUp";
+import { Loading } from "../components/Loading/Loading";
+import { OpenTrade } from "../components/OpenTrade/OpenTrade";
+import { LevelUp } from "../components/LevelUp/LevelUp";
 import {
   resetCategory,
   resetCategoryId,
   resetDesc,
 } from "../redux/course/courseSlice";
-import { CourseCategory } from "../components/CourseCategory";
-import { Portfolio } from "../components/Portfolio";
+import { CourseCategory } from "../components/CourseCategory/CourseCategory";
+import { Portfolio } from "../components/Portfolio/Portfolio";
 
 const Dashboard = () => {
   const { push } = useRouter();
@@ -34,29 +34,26 @@ const Dashboard = () => {
   const [categories, setCategories] = useState([""]);
 
   useEffect(() => {
-    //get open trades
-    fetch(`https://pineko-api.vercel.app/api/trade?user=${user.user_id}`)
+    fetch(`/api/trade?user=${user.user_id}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(setOpenTrades(data[0]));
       });
 
-    //get courses
     dispatch(resetCategory());
     dispatch(resetCategoryId());
     dispatch(resetDesc());
 
-    fetch(`https://pineko-api.vercel.app/api/category`)
+    fetch(`/api/category`)
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
       });
   }, []);
 
-  // check level up
   useEffect(() => {
     if (user.user_id != 0 && user.experience_points >= user.level * 100) {
-      fetch(`https://pineko-api.vercel.app/api/levelup?user=${user.user_id}`)
+      fetch(`/api/levelup?user=${user.user_id}`)
         .then((response) => response.json())
         .then((data) => {
           dispatch(setUser(data));
@@ -66,11 +63,11 @@ const Dashboard = () => {
   }, [user]);
 
   if (user.user_id === 0) {
-    return <Loading />; // conditional rendering
+    return <Loading />;
   }
 
   return (
-    <div className="px-5 pb-32 flex flex-col gap-5 lg:px-20">
+    <div className="px-5 pb-28 flex flex-col gap-5 lg:px-20">
       <Modal
         isOpen={isLevelUpOpen}
         onClose={onLevelUpClose}
@@ -113,7 +110,7 @@ const Dashboard = () => {
         <div className="flex flex-col gap-4 lg:gap-5">
           {categories.slice(0, 1).map((category: any, index: number) => (
             <CourseCategory
-              index={index}
+              key={index}
               categoryId={category[0]}
               name={category[1]}
               desc={category[2]}

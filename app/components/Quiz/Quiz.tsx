@@ -15,9 +15,9 @@ import {
 } from "@chakra-ui/react";
 import { TbLetterA, TbLetterB, TbLetterC } from "react-icons/tb";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { Loading } from "./Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { setUser } from "../../redux/user/userSlice";
 
 export const Quiz = (props: any) => {
   const { onOpen, isOpen, onClose } = useDisclosure();
@@ -29,12 +29,13 @@ export const Quiz = (props: any) => {
   const user_id = useSelector((state: RootState) => state.user.user.user_id);
 
   const { push } = useRouter();
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    fetch(`https://pineko-api.vercel.app/api/quiz/submit`, {
+    fetch(`/api/quiz/submit`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Specify JSON content type
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         user_id: user_id,
@@ -46,12 +47,12 @@ export const Quiz = (props: any) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Quiz submitted");
+        dispatch(setUser(data));
       });
   };
 
   useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/quiz?course=${props.courseId}`)
+    fetch(`/api/quiz?course=${props.courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setQuestion(data[2]);
@@ -61,13 +62,7 @@ export const Quiz = (props: any) => {
   }, []);
 
   if (question.length === 0) {
-    return (
-      <>
-        <ModalContent>
-          <Loading />
-        </ModalContent>
-      </>
-    );
+    return <></>;
   }
 
   return (

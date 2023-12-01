@@ -4,36 +4,37 @@ import React, { useEffect, useState } from "react";
 import { Badge } from "@chakra-ui/react";
 import { PiCrownSimpleFill } from "react-icons/pi";
 import { GiCurlyWing } from "react-icons/gi";
-import { Loading } from "../components/Loading";
+import { Loading } from "../components/Loading/Loading";
+import { UserAvatar } from "../components/UserAvatar/UserAvatar";
 
 const Leaderboard = () => {
   const [ranking, setRanking] = useState([]);
 
   useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/users`)
+    fetch(`/api/users`)
       .then((response) => response.json())
       .then((data) => {
         setRanking(data);
       });
   }, []);
 
-  // Conditional rendering
   if (ranking.length === 0) {
     return <Loading />;
   }
 
   return (
-    <div className="mx-10 flex flex-col gap-5 pt-10 pb-32 ">
-      <div className="mx-auto max-w-2xl lg:max-w-4xl flex flex-col gap-5 pb-5">
+    <div className="mx-10 flex flex-col gap-5 pt-10 pb-24">
+      <div className="mx-auto max-w-2xl flex flex-col gap-5 lg:max-w-4xl">
         <h2 className="text-3xl font-bold">Leaderboard</h2>
 
-        <div>
-          <PiCrownSimpleFill className="mx-auto text-yellow-500" size={30} />
+        <div className="mx-auto">
+          <PiCrownSimpleFill className="mx-auto text-yellow-500" size={35} />
           <div className="flex">
             <GiCurlyWing className="text-yellow-500" size={50} />
-            <img
-              className="mx-auto h-20 w-20 rounded-full"
-              src={ranking[0][4]}
+            <UserAvatar
+              size="xl"
+              user={ranking[0][0]}
+              username={ranking[0][1]}
             />
             <GiCurlyWing
               className="text-yellow-500"
@@ -49,8 +50,8 @@ const Leaderboard = () => {
             1
           </div>
           <div className="flex gap-1">
-            <Badge>Lv {ranking[0][7]}</Badge>
-            <p className="text-sm text-slate-400">{ranking[0][6]} exp.</p>
+            <Badge>Lv {ranking[0][6]}</Badge>
+            <p className="text-sm text-slate-400">{ranking[0][5]} exp.</p>
           </div>
         </div>
       </div>
@@ -59,17 +60,14 @@ const Leaderboard = () => {
         {ranking.slice(1).map((person, index) => (
           <li key={person[2]} className="flex justify-between gap-x-6 py-5">
             <div className="flex min-w-0 gap-x-4">
-              <img
-                className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                src={person[4]}
-              />
+              <UserAvatar size="md" user={person[0]} username={person[1]} />
               <div className="min-w-0 flex-auto">
                 <p className="text-sm font-semibold leading-6 text-gray-900">
                   {person[1]}
                 </p>
                 <div className="flex gap-1">
-                  <Badge>Lv {person[7]}</Badge>
-                  <p className="text-sm text-slate-400">{person[6]} exp.</p>
+                  <Badge>Lv {person[6]}</Badge>
+                  <p className="text-sm text-slate-400">{person[5]} exp.</p>
                 </div>
               </div>
             </div>

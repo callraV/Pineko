@@ -8,7 +8,7 @@ import {
   setCategoryId,
   setCategory,
   setDesc,
-} from "../redux/course/courseSlice";
+} from "../../redux/course/courseSlice";
 
 export const CourseCategory = (props: any) => {
   const { push } = useRouter();

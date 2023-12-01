@@ -1,7 +1,6 @@
 "use client";
 
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter/counterSlice";
 import userReducer from "./user/userSlice";
 import chartReducer from "./chart/chartSlice";
 import priceReducer from "./price/priceSlice";

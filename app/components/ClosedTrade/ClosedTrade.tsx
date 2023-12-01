@@ -7,7 +7,11 @@ export const ClosedTrade = (props: any) => {
   return (
     <Tr
       key={props.index}
-      className={props.trade[5] > 0 ? "bg-green-100" : "bg-red-100"}
+      className={
+        props.trade[5] > 0
+          ? "bg-green-100 text-green-600 font-semibold"
+          : "bg-red-100 text-red-600  font-semibold"
+      }
     >
       <Td>
         <Tooltip
@@ -21,15 +25,7 @@ export const ClosedTrade = (props: any) => {
       <Td>{props.trade[1] === 1 ? "Buy" : "Sell"}</Td>
       <Td className="hidden md:table-cell">{props.trade[2]}</Td>
       <Td className="hidden md:table-cell">{props.trade[3]}</Td>
-      <Td
-        className={
-          props.trade[5] > 0
-            ? "text-green-600 font-bold"
-            : "text-red-500 font-bold"
-        }
-      >
-        {props.trade[5]}
-      </Td>
+      <Td className="font-bold">{props.trade[5]}</Td>
     </Tr>
   );
 };

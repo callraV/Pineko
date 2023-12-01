@@ -11,15 +11,15 @@ import {
   AiFillBook,
   AiFillCrown,
 } from "react-icons/ai";
-import { RootState } from "../redux/store";
-import { resetUser } from "../redux/user/userSlice";
+import { RootState } from "../../redux/store";
+import { resetUser } from "../../redux/user/userSlice";
 import {
   setEURUSD,
   setGBPUSD,
   setUSDCHF,
   setUSDCAD,
   setXBTUSD,
-} from "../redux/price/priceSlice";
+} from "../../redux/price/priceSlice";
 
 export const BottomNavbar = () => {
   const user = useSelector((state: RootState) => state.user.user.user_id);
@@ -29,13 +29,13 @@ export const BottomNavbar = () => {
   const courseRegex = /^\/course/;
   const dispatch = useDispatch();
   const pairs = ["XBT/USD", "EUR/USD", "USD/CAD", "GBP/USD", "USD/CHF"];
-  const websockets: WebSocket[] = []; // Array to store WebSocket instances
+  const websockets: WebSocket[] = [];
 
   useEffect(() => {
     if (user > 0) {
       pairs.forEach((pair: string) => {
         const socket = new WebSocket("wss://ws.kraken.com");
-        websockets.push(socket); // store WebSocket instance in the array
+        websockets.push(socket);
 
         socket.onopen = function () {
           this.onmessage = (e) => handleWebSocketData(e);
@@ -76,7 +76,7 @@ export const BottomNavbar = () => {
     }
 
     return () => {
-      websockets.forEach((socket) => socket.close()); // Close all WebSocket connections on unmount
+      websockets.forEach((socket) => socket.close()); // close all WebSocket connections on unmount
     };
   }, [user]);
 
@@ -99,7 +99,7 @@ export const BottomNavbar = () => {
   }, []);
 
   if (user === 0) {
-    return <></>; // Conditional rendering
+    return <></>;
   }
 
   return (

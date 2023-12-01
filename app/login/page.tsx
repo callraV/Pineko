@@ -33,7 +33,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(value) => {
-              fetch(`/api/login`, {
+              fetch(`/rewriteapi/login`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

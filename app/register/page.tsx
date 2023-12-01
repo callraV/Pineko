@@ -30,7 +30,7 @@ const Register = () => {
             initialValues={{ username: "", email: "", password: "" }}
             validationSchema={RegisterSchema}
             onSubmit={(value) => {
-              fetch(`/api/register`, {
+              fetch(`/rewriteapi/register`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

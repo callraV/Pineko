@@ -11,7 +11,7 @@ const Leaderboard = () => {
   const [ranking, setRanking] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/users`)
+    fetch(`/rewriteapi/users`)
       .then((response) => response.json())
       .then((data) => {
         setRanking(data);

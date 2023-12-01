@@ -36,7 +36,7 @@ export const DeleteProfile = () => {
             initialValues={{ password: "" }}
             validationSchema={DeleteProfileSchema}
             onSubmit={(value: any) => {
-              fetch(`/api/profile/delete`, {
+              fetch(`/getapi/profile/delete`, {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",

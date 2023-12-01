@@ -32,7 +32,7 @@ export const Quiz = (props: any) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    fetch(`/api/quiz/submit`, {
+    fetch(`/rewriteapi/quiz/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const Quiz = (props: any) => {
   };
 
   useEffect(() => {
-    fetch(`/api/quiz?course=${props.courseId}`)
+    fetch(`/rewriteapi/quiz?course=${props.courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setQuestion(data[2]);

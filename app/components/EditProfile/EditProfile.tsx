@@ -46,7 +46,7 @@ export const EditProfile = () => {
     formData.append("user_id", String(user.user_id));
 
     try {
-      const response = await fetch("/api/profile/edit/upload", {
+      const response = await fetch("/rewriteapi/profile/edit/upload", {
         method: "POST",
         body: formData,
       });
@@ -69,7 +69,7 @@ export const EditProfile = () => {
             initialValues={{ username: "", password: "" }}
             validationSchema={EditProfileSchema}
             onSubmit={(value: any) => {
-              fetch(`/api/profile/edit`, {
+              fetch(`/rewriteapi/profile/edit`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

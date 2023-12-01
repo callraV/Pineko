@@ -10,7 +10,7 @@ export const UserAvatar = (props: any) => {
   const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
-    fetch(`/api/profile/image?user=${props.user}`)
+    fetch(`/rewriteapi/profile/image?user=${props.user}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {

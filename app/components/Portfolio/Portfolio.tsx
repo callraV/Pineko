@@ -27,7 +27,7 @@ export const Portfolio = () => {
   };
 
   useEffect(() => {
-    fetch(`/api/trade/history?user=${user.user_id}`)
+    fetch(`/rewriteapi/trade/history?user=${user.user_id}`)
       .then((response) => response.json())
       .then((data) => {
         setHistory(data);

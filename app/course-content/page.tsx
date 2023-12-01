@@ -29,7 +29,7 @@ const CourseContent = () => {
   });
 
   useEffect(() => {
-    fetch(`/api/course/text?course=${course[0]}`)
+    fetch(`/rewriteapi/course/text?course=${course[0]}`)
       .then((response) => response.json())
       .then((data) => {
         setCourseText(data);

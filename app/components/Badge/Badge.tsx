@@ -12,13 +12,13 @@ export const Badge = () => {
   const [earnedBadges, setEarnedBadges] = useState([""]);
 
   useEffect(() => {
-    fetch(`/api/badges`)
+    fetch(`/rewriteapi/badges`)
       .then((response) => response.json())
       .then((data) => {
         setBadges(data);
       });
 
-    fetch(`/api/badges/earned?user=${user_id}`)
+    fetch(`/rewriteapi/badges/earned?user=${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         setEarnedBadges(data);

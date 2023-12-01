@@ -19,7 +19,7 @@ const CourseCategories = () => {
     dispatch(resetCategoryId());
     dispatch(resetDesc());
 
-    fetch(`/api/category`)
+    fetch(`/rewriteapi/category`)
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);

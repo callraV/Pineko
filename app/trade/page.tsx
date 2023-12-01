@@ -140,7 +140,7 @@ const Trade = () => {
   }, [pair, interval]);
 
   const handleTrade = (trade: any) => {
-    fetch(`/api/trade/open`, {
+    fetch(`/rewriteapi/trade/open`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

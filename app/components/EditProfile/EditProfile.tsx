@@ -54,13 +54,16 @@ export const EditProfile = () => {
       );
 
       const data = await response.json();
+      if (data === "Error") {
+        toast({
+          position: "top-right",
+          title: "File unsupported. Please adhere to the file requirement.",
+          status: "error",
+          duration: 2000,
+        });
+      }
     } catch (error) {
-      toast({
-        position: "top-right",
-        title: "File unsupported. Please adhere to the file requirement.",
-        status: "error",
-        duration: 2000,
-      });
+      console.log(error);
     }
   };
 

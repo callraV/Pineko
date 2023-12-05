@@ -55,7 +55,12 @@ export const EditProfile = () => {
 
       const data = await response.json();
     } catch (error) {
-      console.error("Error uploading file:", error);
+      toast({
+        position: "top-right",
+        title: "File unsupported. Please adhere to the file requirement.",
+        status: "error",
+        duration: 2000,
+      });
     }
   };
 

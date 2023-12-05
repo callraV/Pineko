@@ -54,7 +54,7 @@ export const EditProfile = () => {
       );
 
       const data = await response.json();
-      if (data === "Error") {
+      if (data === "File unsupported") {
         toast({
           position: "top-right",
           title: "File unsupported. Please adhere to the file requirement.",

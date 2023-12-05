@@ -209,7 +209,7 @@ export const EditProfile = () => {
                             />
                           </div>
                           <Text className="flex flex-col mx-auto text-slate-400 text-sm">
-                            JPEG/JPG/PNG max. 500kb
+                            JPEG/JPG/PNG max. 1MB
                           </Text>
                         </div>
                       </div>

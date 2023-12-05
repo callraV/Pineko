@@ -29,7 +29,7 @@ export const DeleteProfile = () => {
 
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Delete profile</ModalHeader>
+        <ModalHeader>Delete account</ModalHeader>
 
         <ModalBody>
           <Formik

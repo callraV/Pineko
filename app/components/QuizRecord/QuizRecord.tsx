@@ -92,7 +92,11 @@ export const QuizRecord = (props: any) => {
 
         <ModalFooter>
           <div className="flex flex-col py-2.5 gap-1 items-end">
-            <div className="text-md font-semibold text-yellow-600">
+            <div
+              className={`text-md font-semibold ${
+                answer === correctAnswer ? "text-yellow-600" : "text-red-600"
+              }`}
+            >
               Correct answer: {correctAnswer}
             </div>
             <div className="text-xs text-slate-400 italic">

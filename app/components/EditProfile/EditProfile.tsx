@@ -20,7 +20,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { setUser } from "../../redux/user/userSlice";
 import { EditProfileSchema } from "../../utils/SchemasUtil";
 import { DeleteProfile } from "../DeleteProfile/DeleteProfile";
-import { UserAvatar } from "../UserAvatar/UserAvatar";
 
 export const EditProfile = () => {
   const dispatch = useDispatch();

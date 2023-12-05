@@ -98,12 +98,6 @@ export const EditProfile = () => {
                       duration: 2000,
                     });
                   } else if (data === "No changes made") {
-                    toast({
-                      position: "top-right",
-                      title: "No changes made",
-                      status: "error",
-                      duration: 2000,
-                    });
                   } else {
                     toast({
                       position: "top-right",

@@ -8,17 +8,16 @@ import { Modal, useDisclosure, Text } from "@chakra-ui/react";
 import { Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
 import { setOpenTrades } from "../redux/open/openSlice";
 import { setUser } from "../redux/user/userSlice";
-import { Loading } from "../components/Loading/Loading";
-import { OpenTrade } from "../components/OpenTrade/OpenTrade";
-import { LevelUp } from "../components/LevelUp/LevelUp";
 import {
   resetCategory,
   resetCategoryId,
   resetDesc,
 } from "../redux/course/courseSlice";
-import { CourseCategory } from "../components/CourseCategory/CourseCategory";
 import { Portfolio } from "../components/Portfolio/Portfolio";
-
+import { OpenTrade } from "../components/OpenTrade/OpenTrade";
+import { CourseCategory } from "../components/CourseCategory/CourseCategory";
+import { Loading } from "../components/Loading/Loading";
+import { LevelUp } from "../components/LevelUp/LevelUp";
 const Dashboard = () => {
   const { push } = useRouter();
   const dispatch = useDispatch();
@@ -26,12 +25,12 @@ const Dashboard = () => {
   const open_trades = useSelector(
     (state: RootState) => state.open_trades.open_trades
   );
+  const [categories, setCategories] = useState([""]);
   const {
     isOpen: isLevelUpOpen,
     onOpen: onLevelUpOpen,
     onClose: onLevelUpClose,
   } = useDisclosure();
-  const [categories, setCategories] = useState([""]);
 
   useEffect(() => {
     fetch(`https://pineko-api.vercel.app/api/trade?user=${user.user_id}`)

@@ -24,6 +24,7 @@ import { Loading } from "../components/Loading/Loading";
 import { isMarketOpen } from "../utils/MarketHoursUtil";
 import { News } from "../components/News/News";
 import dynamic from "next/dynamic";
+
 const Chart = dynamic(() => import("../components/Chart/Chart"), {
   ssr: false,
 }); // prevent SSR

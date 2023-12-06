@@ -13,7 +13,7 @@ export const Portfolio = () => {
   const [totalProfit, setTotalProfit] = useState(0);
   const { push } = useRouter();
 
-  const accumulatedProfit = (data: any) => {
+  const accumulatedProfit = (data: any[]) => {
     if (data[0] === "No data to show") {
       return "0";
     } else {

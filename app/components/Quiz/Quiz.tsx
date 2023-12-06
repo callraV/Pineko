@@ -31,6 +31,16 @@ export const Quiz = (props: any) => {
   const { push } = useRouter();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    fetch(`https://pineko-api.vercel.app/api/quiz?course=${props.courseId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setQuestion(data[2]);
+        setOptions([data[3], data[4], data[5]]);
+        setCorrectAnswer(data[6]);
+      });
+  }, []);
+
   const handleSubmit = () => {
     fetch(`https://pineko-api.vercel.app/api/quiz/submit`, {
       method: "POST",
@@ -51,16 +61,6 @@ export const Quiz = (props: any) => {
       });
   };
 
-  useEffect(() => {
-    fetch(`https://pineko-api.vercel.app/api/quiz?course=${props.courseId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setQuestion(data[2]);
-        setOptions([data[3], data[4], data[5]]);
-        setCorrectAnswer(data[6]);
-      });
-  }, []);
-
   if (question.length === 0) {
     return <></>;
   }
@@ -73,13 +73,10 @@ export const Quiz = (props: any) => {
         <ModalBody className="flex flex-col gap-5">
           <div className="text-lg">
             To complete this course, you must first answer a question related to
-            the course's topic. Once you click "Attempt now"{" "}
-            <span className="font-semibold text-indigo-600">
-              you may not go back until you have answered the question.
-            </span>
+            the course's topic.
           </div>
 
-          <div className="text-sm">
+          <div className="font-semibold text-indigo-600">
             Remember! You will not gain experience points if your answer is
             incorrect.
           </div>

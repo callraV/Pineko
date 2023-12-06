@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import type { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal, useDisclosure, Text, Image } from "@chakra-ui/react";
+import { Modal, useDisclosure, Image } from "@chakra-ui/react";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { useRouter, useSearchParams } from "next/navigation";
 import Confetti from "react-confetti";

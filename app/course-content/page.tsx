@@ -3,16 +3,18 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { RootState } from "../redux/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { Quiz } from "../components/Quiz/Quiz";
 import { QuizRecord } from "../components/QuizRecord/QuizRecord";
 import { Loading } from "../components/Loading/Loading";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { setTakenCourses } from "../redux/course/courseSlice";
 
 const CourseContent = () => {
   const { push } = useRouter();
+  const dispatch = useDispatch();
   const courseCategory = useSelector(
     (state: RootState) => state.course.category
   );
@@ -23,6 +25,7 @@ const CourseContent = () => {
   const [courseText, setCourseText] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const user_id = useSelector((state: RootState) => state.user.user.user_id);
   const course_id = course[0];
   const tc_id = takenCourses.map((tc: any) => {
     return tc[2];
@@ -33,6 +36,12 @@ const CourseContent = () => {
       .then((response) => response.json())
       .then((data) => {
         setCourseText(data);
+      });
+
+    fetch(`https://pineko-api.vercel.app/api/course/taken?user=${user_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(setTakenCourses(data));
       });
   }, []);
 

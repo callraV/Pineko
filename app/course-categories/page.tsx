@@ -11,8 +11,8 @@ import {
 import { Loading } from "../components/Loading/Loading";
 
 const CourseCategories = () => {
-  const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     dispatch(resetCategory());

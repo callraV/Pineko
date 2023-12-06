@@ -12,6 +12,8 @@ const History = () => {
   const [history, setHistory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const tradesPerPage = 30;
+  const indexOfLastTrade = currentPage * tradesPerPage;
+  const indexOfFirstTrade = indexOfLastTrade - tradesPerPage;
 
   useEffect(() => {
     fetch(
@@ -23,12 +25,9 @@ const History = () => {
       });
   }, []);
 
-  const indexOfLastTrade = currentPage * tradesPerPage;
-  const indexOfFirstTrade = indexOfLastTrade - tradesPerPage;
-
-  const paginate = (pageNumber: any) => {
-    setCurrentPage(pageNumber);
-  };
+  // const paginate = (pageNumber: any) => {
+  //   setCurrentPage(pageNumber);
+  // };
 
   if (history.length === 0) {
     return <Loading />;
@@ -75,7 +74,7 @@ const History = () => {
             }).map((_, number) => (
               <button
                 key={number + 1}
-                onClick={() => paginate(number + 1)}
+                onClick={() => setCurrentPage(number + 1)}
                 className="px-3 py-1 mx-1 rounded-md bg-slate-200 hover:bg-slate-300"
               >
                 {number + 1}

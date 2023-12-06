@@ -20,11 +20,10 @@ import { resetChart, setChart } from "../redux/chart/chartSlice";
 import type { RootState } from "../redux/store";
 import useSound from "use-sound";
 import buySellSound from "../../public/sounds/buy_sell.mp3";
-import { Loading } from "../components/Loading/Loading";
 import { isMarketOpen } from "../utils/MarketHoursUtil";
+import { Loading } from "../components/Loading/Loading";
 import { News } from "../components/News/News";
 import dynamic from "next/dynamic";
-
 const Chart = dynamic(() => import("../components/Chart/Chart"), {
   ssr: false,
 }); // prevent SSR

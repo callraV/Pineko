@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Loading } from "../Loading/Loading";
+import { formatTimestamp } from "@/app/utils/FormatTimestampUtil";
 
 export const News = (props: any) => {
   const [news, setNews] = useState([""]);
@@ -21,18 +22,6 @@ export const News = (props: any) => {
         : 0;
 
     return param;
-  };
-
-  const formatTimestamp = (timestamp: string) => {
-    const date = new Date(timestamp);
-
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-
-    return `${day}-${month}-${year} | ${hours}:${minutes}`;
   };
 
   const getNews = () => {

@@ -33,5 +33,5 @@ Now you can open [http://localhost:3000](http://localhost:3000) with your browse
 
 This system has been deployed to an online domain. To view the deployed system, simply visit the links below:
 
-Frontend: [https://pineko.vercel.app/]
-Backend: [](https://pineko-api.vercel.app/)
+Frontend: [https://pineko.vercel.app/](https://pineko.vercel.app/)
+Backend: [https://pineko-api.vercel.app/](https://pineko-api.vercel.app/)

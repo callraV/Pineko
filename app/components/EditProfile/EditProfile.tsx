@@ -39,32 +39,37 @@ export const EditProfile = () => {
     }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("user_id", String(user.user_id));
 
-    try {
-      const response = await fetch(
-        "https://pineko-api.vercel.app/api/profile/edit/upload",
-        {
-          method: "POST",
-          body: formData,
+    fetch("https://pineko-api.vercel.app/api/profile/edit/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === "File unsupported") {
+          toast({
+            position: "top-right",
+            title: "File unsupported. Please adhere to the file requirements.",
+            status: "error",
+            duration: 2000,
+          });
+        } else if (data === "No selected file" || data === "No file part") {
+        } else {
+          toast({
+            position: "top-right",
+            title: "Profile picture uploaded",
+            status: "success",
+            duration: 2000,
+          });
         }
-      );
-
-      const data = await response.json();
-      if (data === "File unsupported") {
-        toast({
-          position: "top-right",
-          title: "File unsupported. Please adhere to the file requirement.",
-          status: "error",
-          duration: 2000,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      })
+      .catch((error) => {
+        console.error("Error uploading profile picture:", error);
+      });
   };
 
   return (
@@ -100,7 +105,8 @@ export const EditProfile = () => {
                       status: "error",
                       duration: 2000,
                     });
-                  } else if (data === "No changes made") {
+                  } else if (data[0] === "No changes made") {
+                    dispatch(setUser(data[1]));
                   } else {
                     toast({
                       position: "top-right",

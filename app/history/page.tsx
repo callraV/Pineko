@@ -25,10 +25,6 @@ const History = () => {
       });
   }, []);
 
-  // const paginate = (pageNumber: any) => {
-  //   setCurrentPage(pageNumber);
-  // };
-
   if (history.length === 0) {
     return <Loading />;
   }
@@ -65,21 +61,23 @@ const History = () => {
         </TableContainer>
 
         <div className="pt-5 flex gap-2 justify-center items-center">
-          <a className="font-semibold">Page</a>
           {history[0] === "No data to show" ? (
             <div className="my-5">You have not closed any trades yet</div>
           ) : (
-            Array.from({
-              length: Math.ceil(history.length / tradesPerPage),
-            }).map((_, number) => (
-              <button
-                key={number + 1}
-                onClick={() => setCurrentPage(number + 1)}
-                className="px-3 py-1 mx-1 rounded-md bg-slate-200 hover:bg-slate-300"
-              >
-                {number + 1}
-              </button>
-            ))
+            <>
+              <a className="font-semibold">Page</a>
+              {Array.from({
+                length: Math.ceil(history.length / tradesPerPage),
+              }).map((_, number) => (
+                <button
+                  key={number + 1}
+                  onClick={() => setCurrentPage(number + 1)}
+                  className="px-3 py-1 mx-1 rounded-md bg-slate-200 hover:bg-slate-300"
+                >
+                  {number + 1}
+                </button>
+              ))}
+            </>
           )}
         </div>
       </div>

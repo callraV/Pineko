@@ -27,7 +27,7 @@ yarn
 pnpm install
 ```
 
-Lastly, run this command start the development system:
+Finally run this command start the development system:
 
 ```bash
 npm run dev

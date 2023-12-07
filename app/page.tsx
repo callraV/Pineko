@@ -30,9 +30,9 @@ const LandingPage = () => {
               Learn FX Trading with Pineko
             </h1>
             <p className="text-lg pt-5 text-gray-600">
-              Get access to quality courses and forex market predictions, then
-              test your trading skills in our market simulation. Pineko ensures
-              that you have all the resources to{" "}
+              Get access to quality courses and forex market analysis, then test
+              your trading skills in our market simulation. Pineko ensures that
+              you have all the resources to{" "}
               <span className=" text-indigo-600 font-semibold">
                 reach the pinnacle of your trading potential!
               </span>

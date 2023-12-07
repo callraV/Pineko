@@ -1,11 +1,21 @@
 ## Pineko: an Intelligent Forex Trading and e-learning System
 
-This is frontend module for Pineko: an Intelligent Forex Trading and e-learning System.
+This is frontend module for Pineko: an Intelligent Forex Trading and e-Learning System.
 Pineko was developed by Callista Aura Vanya as part of her Capstone 2 Project at Sunway University, Malaysia.
+
+## Production System
+
+This repository holds Pineko's production system.
+It is connected to the production server hosted at [https://pineko-api.vercel.app/]
+
+To access the deployed application, visit the URL below:
+[https://pineko.vercel.app/]
+
+The deployed system is accesible for use in desktop, tablets, and mobile phones.
 
 ## Development System
 
-To run the development system, first, open your git bash.
+To run the development system, first, open a git bash terminal. VS Code is recommended.
 
 Then, install the system's dependencies using:
 
@@ -17,7 +27,7 @@ yarn
 pnpm install
 ```
 
-Lastly, use this command run the development system:
+Lastly, run this command start the development system:
 
 ```bash
 npm run dev
@@ -27,11 +37,4 @@ yarn dev
 pnpm dev
 ```
 
-Now you can open [http://localhost:3000](http://localhost:3000) with your browser to see Pineko's development system.
-
-## Production System
-
-This system has been deployed to an online domain. To view the deployed system, simply visit the links below:
-
-Frontend: [https://pineko.vercel.app/](https://pineko.vercel.app/)
-Backend: [https://pineko-api.vercel.app/](https://pineko-api.vercel.app/)
+Pineko's development system is now running at [http://localhost:3000]

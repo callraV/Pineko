@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { Loading } from "../Loading/Loading";
 import { formatTimestamp } from "@/app/utils/FormatTimestampUtil";
+import { Spinner } from "@chakra-ui/react";
 
 export const News = (props: any) => {
-  const [news, setNews] = useState([""]);
+  const [news, setNews]: any[] = useState([]);
 
   const newsParam = (p: string) => {
     const param =
@@ -32,6 +33,7 @@ export const News = (props: any) => {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         if (data.articles) {
           const originalData = data.articles.slice(0, 30);
           var analyzedData: any[] = [];
@@ -54,8 +56,6 @@ export const News = (props: any) => {
               });
           });
           setNews(analyzedData);
-        } else {
-          setNews([""]);
         }
       });
   };
@@ -112,9 +112,10 @@ export const News = (props: any) => {
     <>
       <div>
         <div className="mx-auto">
-          {news.length === 1 ? (
+          {news.length === 0 ? (
             <div className="flex justify-center py-10">
-              Too many requests in 24 hours. Try again later.
+              <Spinner />
+              {/* Too many requests in 24 hours. Try again later. */}
             </div>
           ) : (
             <>

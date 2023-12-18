@@ -27,7 +27,7 @@ export const News = (props: any) => {
 
   const getNews = () => {
     fetch(
-      `https://newsapi.org/v2/everything?q=${newsParam(
+      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${newsParam(
         props.pair
       )}&language=en&apiKey=6338b5e7d5374d90947fb44ee0b10b07`
     )

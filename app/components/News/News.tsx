@@ -27,7 +27,7 @@ export const News = (props: any) => {
 
   const getNews = () => {
     fetch(
-      `/newsapi/everything?q=${newsParam(
+      `https://newsapi.org/v2/everything?q=${newsParam(
         props.pair
       )}&language=en&apiKey=6338b5e7d5374d90947fb44ee0b10b07`
     )

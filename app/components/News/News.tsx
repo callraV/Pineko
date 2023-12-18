@@ -33,7 +33,7 @@ export const News = (props: any) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.articles) {
           const originalData = data.articles.slice(0, 30);
           var analyzedData: any[] = [];
@@ -114,8 +114,8 @@ export const News = (props: any) => {
         <div className="mx-auto">
           {news.length === 0 ? (
             <div className="flex justify-center py-10">
-              <Spinner />
-              {/* Too many requests in 24 hours. Try again later. */}
+              {/* <Spinner /> */}
+              Too many requests in 24 hours. Try again later.
             </div>
           ) : (
             <>

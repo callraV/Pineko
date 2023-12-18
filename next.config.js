@@ -5,11 +5,11 @@ const nextConfig = {
   rewrites: async () => {
     return [
       {
-        source: "/api/:path*",
+        source: "/newsapi/:path*",
         destination:
           process.env.NODE_ENV === "development"
-            ? "http://127.0.0.1:5328/api/:path*"
-            : "https://pineko-api.vercel.app/api/:path*",
+            ? "https://newsapi.org/v2/:path*"
+            : "https://newsapi.org/v2/:path*",
       },
     ];
   },
